@@ -1,0 +1,63 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintStream;
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+//        1. Да се напише метод, който приема като параметри 2 цели числа a и b и генерира файл
+//        sequence.txt, който съдържа всички нечетни числа между a и b. Двете числа се въвеждат от потребителя.
+//        б) направете втори метод, който генерира файл sequence.csv със същите числа добавени на 1 ред в отделни колони
+//        2. Да се напише програма, която чете имена на служители във фирма (име и фамилия)
+//        от файла names.txt и ги записва в масив. На всеки ред от файла има по едно първо име и фамилия и има поне 4 реда
+
+//        createFileEveNums(1, 10);
+        readNameEmployFromFile();
+
+
+    }
+
+    private static void readNameEmployFromFile() {
+        String[] employes = new String[4];
+
+        try{
+            File file = new File("names.txt");
+            Scanner sc = new Scanner(file, "utf-8");
+            int lineNumber = 0;
+            while(sc.hasNextLine()) {
+//                System.out.println(lineNumber + ": " + sc.nextLine());
+                employes[lineNumber] = lineNumber+"."+sc.nextLine().toString();
+                lineNumber++;
+
+            }
+            sc.close();
+        } catch (FileNotFoundException ex) {
+            System.out.println(ex);
+        }
+
+        for (int i = 0; i < employes.length; i++) {
+            System.out.println(employes[i]);
+        }
+    }
+
+    private static void createFileEveNums(int a, int b) {
+        try {
+            PrintStream ps = new PrintStream("sequence.txt");
+            PrintStream psCSV = new PrintStream("sequence.csv");
+
+            for (int i = a; i < b; i++) {
+
+                if (i % 2 != 0) {
+                    ps.print(i);
+                    ps.print(" ");
+                    psCSV.print(i);
+                    psCSV.print(",");
+                }
+            }
+            ps.close();
+            psCSV.close();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+}
