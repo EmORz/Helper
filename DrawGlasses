@@ -1,0 +1,78 @@
+import java.util.Scanner;
+
+public class Task_6 {
+//    Напишете програма, която чете число n (3 ≤ n ≤ 100) и рисува
+//    очила с големина n.
+
+    public static void main(String[] args) {
+
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter number [3 ≤ n ≤ 100]: ");
+        int num = scanner.nextInt();
+//        drawGlasses(3);
+        if (num <3 || num>100) {
+            System.out.println("Number must be between 3 and 100!");
+        }else {
+            drawGlasses2(num);
+        }
+    }
+
+    private static void drawGlasses2(int n) {
+
+        int frameWidth = n *2;
+        String helper = "*"+"/".repeat(frameWidth-2)+"*";
+        String bottomAndTop = "*".repeat(frameWidth)+" ".repeat(n)+"*".repeat(frameWidth);
+        String middle = helper+"|".repeat(n)+helper;
+        String middle1 = helper+" ".repeat(n)+helper;
+
+        System.out.println(bottomAndTop);
+        for (int i = 0; i < n/2 ; i++) {
+            if (i == 0) {
+                System.out.println(middle);
+
+            }else {
+                System.out.println(middle1);
+            }
+        }
+        System.out.println(bottomAndTop);
+    }
+
+    private static void drawGlasses(int n) {
+//
+//        n = 3:
+//****** ******
+//*////*|||*////*
+//****** ******
+
+        //Не работи!
+
+        var temp = n-1;
+        for (int i = 0; i < n ; i++) {
+
+            for (int j = 0; j < n*4+1; j++) {
+
+                if ((i == 0 || i == temp )) {
+                    System.out.print("*");
+                }
+                else if ((i != 0 || i != temp)) {
+                    if (j == 0 || j==temp) {
+                        System.out.print("*");
+                    }
+                        System.out.print("/");
+
+                }
+                if (j == n*2) {
+
+                    System.out.print(" ");
+                }
+
+            }
+            System.out.println();
+
+        }
+
+
+
+    }
+
+}
